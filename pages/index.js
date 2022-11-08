@@ -35,20 +35,7 @@ export async function getServerSideProps(context) {
 	const res = await fetch(`https://swapi.dev/api/people/`);
 	const data = await res.json();
 
-	if (!data) {
-		return {
-			notFound: true,
-		};
-	}
-
-	return {
-		props: {data},
-	};
-}
-
-export async function getServerSideProps(context) {
-	const res = await fetch(`https://swapi.dev/api/people/?search=${searchField}`);
-	const data = await res.json();
+	console.log(context);
 
 	if (!data) {
 		return {
