@@ -4,11 +4,15 @@ import {useRouter} from 'next/router';
 import Button from '../components/Button';
 
 export default function Home(props) {
-	console.log(props.data);
-
+	console.log(props);
 	const router = useRouter();
+	console.log(router);
+	/**
+	 * stores the content of the search bar
+	 */
 
 	const [searchField, setSearchField] = useState('');
+
 	/**
 	 * pushes the windows so the getServerSideProps does the search
 	 */
@@ -17,38 +21,41 @@ export default function Home(props) {
 		router.push(`/?search=${searchField}`);
 	};
 
-	return (
-		<div className={styles.container}>
-			<main className={styles.main}>
-				<h1>Remarcable people of a galaxy far, far away...</h1>
-				<h4>
-					Search for your favourite character:{' '}
-					<input
-						type="text"
-						value={searchField}
-						onChange={(e) => setSearchField(e.target.value)}></input>
-					<button onClick={() => handleClickSearch()}>Search</button>
-				</h4>
-				{props.data.results.map((item, i) => (
-					<ul className="" key={i}>
-						{item.name}
-					</ul>
-				))}
-				<div>
-					<Button />
-					<Button />
-				</div>
-			</main>
+	const nextPage = () => {
+		router.push(props.data.next.split('/').pop());
+	};
 
-			<footer className={styles.footer}></footer>
-		</div>
+	return (
+		<main className={styles.main}>
+			<h1>Remarcable people of a galaxy far, far away...</h1>
+			<h4>
+				Search for your favourite character:{' '}
+				<input
+					type="text"
+					value={searchField}
+					onChange={(e) => setSearchField(e.target.value)}></input>
+				<button onClick={() => handleClickSearch()}>Search</button>
+			</h4>
+			<ul className="list-group">
+				{props.data.results.map((item, i) => (
+					<li className="list-group-item" key={i}>
+						{item.name}
+					</li>
+				))}
+			</ul>
+
+			<div>
+				<Button handleClick={nextPage} />
+				<Button />
+			</div>
+		</main>
 	);
 }
 
 export async function getServerSideProps(context) {
 	try {
 		const res = await fetch(
-			`https://swapi.dev/api/people/?search=${context.query.search}`
+			`https://swapi.dev/api/people/?search=${context.query.search}&page=${context.query.page}`
 		);
 		const data = await res.json();
 
