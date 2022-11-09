@@ -1,13 +1,19 @@
 import styles from '../styles/Home.module.css';
 import {useState} from 'react';
+import {useRouter} from 'next/router';
 
 export default function Home(props) {
 	console.log(props.data);
 
-	const [searchField, setSearchField] = useState('');
+	const router = useRouter();
 
-	const doTheSearch = (item) => {
-		setSearchField(item);
+	const [searchField, setSearchField] = useState('');
+	/**
+	 * pushes the windows so the getServerSideProps does the search
+	 */
+
+	const handleClickSearch = () => {
+		router.push(`/?search=${searchField}`);
 	};
 
 	return (
@@ -16,8 +22,11 @@ export default function Home(props) {
 				<div>In a galaxy far, far away...</div>
 				<div>
 					Search for your favourite character:{' '}
-					<input type="text" value=""></input>
-					<div onClick={doTheSearch}>Search</div>
+					<input
+						type="text"
+						value={searchField}
+						onChange={(e) => setSearchField(e.target.value)}></input>
+					<div onClick={() => handleClickSearch()}>Search</div>
 				</div>
 				{props.data.results.map((item, i) => (
 					<div className="" key={i}>
@@ -32,7 +41,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-	const res = await fetch(`https://swapi.dev/api/people/`);
+	const res = await fetch(`https://swapi.dev/api/people/?search=${context.query.search}`);
 	const data = await res.json();
 
 	console.log(context);
