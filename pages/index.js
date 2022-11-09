@@ -4,8 +4,8 @@ import {useRouter} from 'next/router';
 import Button from '../components/Button';
 
 export default function Home(props) {
-	console.log(props);
 	const router = useRouter();
+	console.log(props);
 	console.log(router);
 	/**
 	 * stores the content of the search bar
@@ -48,9 +48,9 @@ export default function Home(props) {
 				{props.data.results === undefined
 					? ''
 					: props.data.results.map((item, i) => (
-							<li className="list-group-item" key={i}>
+							<a href='/character-page'><li className="list-group-item" key={i}>
 								{item.name}
-							</li>
+							</li></a>
 					  ))}
 			</ul>
 
@@ -62,14 +62,21 @@ export default function Home(props) {
 	);
 }
 
+/**
+ * this funtion will get you te characters on the search and also paginates it
+ */
+
 export async function getServerSideProps(context) {
 	try {
 		const res = await fetch(
-			`https://swapi.dev/api/people/?search=${context.query.search}&page=${context.query.page}`
+			`https://swapi.dev/api/people/?search=${context.query.search}&page=${
+				context.query.page === undefined ? '' : context.query.page
+			}`
 		);
+
 		const data = await res.json();
 
-		console.log(context);
+		console.log(res);
 
 		if (!data) {
 			return {
