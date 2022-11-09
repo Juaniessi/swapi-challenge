@@ -22,13 +22,13 @@ export default function Home(props) {
 	};
 
 	const nextPage = () => {
-		if (props.data.next !== undefined) {
+		if (props.data.next !== null && props.data.next !== undefined) {
 			router.push(props.data.next.split('/').pop());
 		}
 	};
 
 	const prevPage = () => {
-		if (props.data.previous !== undefined) {
+		if (props.data.previous !== null && props.data.next !== undefined) {
 			router.push(props.data.previous.split('/').pop());
 		}
 	};
