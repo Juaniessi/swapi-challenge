@@ -22,7 +22,15 @@ export default function Home(props) {
 	};
 
 	const nextPage = () => {
-		router.push(props.data.next.split('/').pop());
+		if (props.data.next !== undefined) {
+			router.push(props.data.next.split('/').pop());
+		}
+	};
+
+	const prevPage = () => {
+		if (props.data.previous !== undefined) {
+			router.push(props.data.previous.split('/').pop());
+		}
 	};
 
 	return (
@@ -37,16 +45,18 @@ export default function Home(props) {
 				<button onClick={() => handleClickSearch()}>Search</button>
 			</h4>
 			<ul className="list-group">
-				{props.data.results.map((item, i) => (
-					<li className="list-group-item" key={i}>
-						{item.name}
-					</li>
-				))}
+				{props.data.results === undefined
+					? ''
+					: props.data.results.map((item, i) => (
+							<li className="list-group-item" key={i}>
+								{item.name}
+							</li>
+					  ))}
 			</ul>
 
 			<div>
 				<Button handleClick={nextPage} />
-				<Button />
+				<Button handleClick={prevPage} />
 			</div>
 		</main>
 	);
