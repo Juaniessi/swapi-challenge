@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
+import Button from '../components/Button';
 
 export default function Home(props) {
 	console.log(props.data);
@@ -19,20 +20,24 @@ export default function Home(props) {
 	return (
 		<div className={styles.container}>
 			<main className={styles.main}>
-				<div>In a galaxy far, far away...</div>
-				<div>
+				<h1>Remarcable people of a galaxy far, far away...</h1>
+				<h4>
 					Search for your favourite character:{' '}
 					<input
 						type="text"
 						value={searchField}
 						onChange={(e) => setSearchField(e.target.value)}></input>
-					<div onClick={() => handleClickSearch()}>Search</div>
-				</div>
+					<button onClick={() => handleClickSearch()}>Search</button>
+				</h4>
 				{props.data.results.map((item, i) => (
-					<div className="" key={i}>
+					<ul className="" key={i}>
 						{item.name}
-					</div>
+					</ul>
 				))}
+				<div>
+					<Button />
+					<Button />
+				</div>
 			</main>
 
 			<footer className={styles.footer}></footer>
@@ -59,7 +64,7 @@ export async function getServerSideProps(context) {
 		};
 	} catch {
 		return {
-			props: {data:[]},
+			props: {data: []},
 		};
 	}
 }
