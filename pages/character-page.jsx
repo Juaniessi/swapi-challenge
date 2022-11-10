@@ -1,5 +1,4 @@
 import styles from '../styles/Home.module.css';
-import {useState} from 'react';
 import {useRouter} from 'next/router';
 import Button from '../components/Button';
 import Link from 'next/link';
@@ -33,7 +32,7 @@ export default function Character(props) {
 			)}
 
 			<Link href="/">
-				<Button />
+				<Button label="Back to home"/>
 			</Link>
 		</main>
 	);

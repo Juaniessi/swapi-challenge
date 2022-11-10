@@ -34,8 +34,7 @@
 }
 
 .primary {
-	background-color: var(--main-color);
-	color: #fff;
+	background-color: white;
 }
 
 .secondary {

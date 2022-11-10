@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function Home(props) {
 	const router = useRouter();
-	
+
 	/**
 	 * stores the content of the search bar
 	 */
@@ -21,11 +21,20 @@ export default function Home(props) {
 		router.push(`/?search=${searchField}`);
 	};
 
+	/**
+	 * takes you to the next row of characters
+	 */
+
 	const nextPage = () => {
 		if (props.data.next !== null && props.data.next !== undefined) {
 			router.push(props.data.next.split('/').pop());
 		}
 	};
+
+	/**
+	 * takes you to the previous row of characters
+	 */
+
 
 	const prevPage = () => {
 		if (props.data.previous !== null && props.data.next !== undefined) {
@@ -53,10 +62,17 @@ export default function Home(props) {
 							</Link>
 					  ))}
 			</ul>
-
-			<div>
-				<Button handleClick={nextPage} />
-				<Button handleClick={prevPage} />
+			<div className={styles.buttonBox}>
+				<Button
+					handleClick={prevPage}
+					label="Previous"
+					disabled={!props.data.previous}
+				/>
+				<Button
+					handleClick={nextPage}
+					label="Next"
+					disabled={!props.data.next}
+				/>
 			</div>
 		</main>
 	);
