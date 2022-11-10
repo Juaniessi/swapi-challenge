@@ -48,9 +48,9 @@ export default function Home(props) {
 				{props.data.results === undefined
 					? ''
 					: props.data.results.map((item, i) => (
-							<a href='/character-page'><li className="list-group-item" key={i}>
-								{item.name}
-							</li></a>
+							<link href="/character-page" key={i}>
+								<li className="list-group-item">{item.name}</li>
+							</link>
 					  ))}
 			</ul>
 

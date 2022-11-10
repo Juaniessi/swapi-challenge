@@ -32,7 +32,7 @@ export default function Character(props) {
 export async function getServerSideProps(context) {
 	try {
 		const res = await fetch(
-			`https://swapi.dev/api/people/?search=Luke Skywalker`
+			`https://swapi.dev/api/people/?search=${context.result.url}`
 		);
 		const data = await res.json();
 
