@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 import Button from '../components/Button';
+import Link from 'next/link';
 
 export default function Home(props) {
 	const router = useRouter();
@@ -48,9 +49,9 @@ export default function Home(props) {
 				{props.data.results === undefined
 					? ''
 					: props.data.results.map((item, i) => (
-							<link href="/character-page" key={i}>
+							<Link href="/character-page" key={i}>
 								<li className="list-group-item">{item.name}</li>
-							</link>
+							</Link>
 					  ))}
 			</ul>
 
