@@ -6,8 +6,7 @@ import Link from 'next/link';
 
 export default function Home(props) {
 	const router = useRouter();
-	console.log(props);
-	console.log(router);
+	
 	/**
 	 * stores the content of the search bar
 	 */
@@ -49,7 +48,7 @@ export default function Home(props) {
 				{props.data.results === undefined
 					? ''
 					: props.data.results.map((item, i) => (
-							<Link href="/character-page" key={i}>
+							<Link href={`/character-page?url=${item.url}`} key={i}>
 								<li className="list-group-item">{item.name}</li>
 							</Link>
 					  ))}
@@ -76,8 +75,6 @@ export async function getServerSideProps(context) {
 		);
 
 		const data = await res.json();
-
-		console.log(res);
 
 		if (!data) {
 			return {
