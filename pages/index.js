@@ -35,7 +35,6 @@ export default function Home(props) {
 	 * takes you to the previous row of characters
 	 */
 
-
 	const prevPage = () => {
 		if (props.data.previous !== null && props.data.next !== undefined) {
 			router.push(props.data.previous.split('/').pop());
@@ -44,21 +43,35 @@ export default function Home(props) {
 
 	return (
 		<main className={styles.main}>
-			<h1>Remarcable people of a galaxy far, far away...</h1>
-			<h4>
+			<h1 className="mb-5 mt-5">
+				Remarcable people of a galaxy far, far away...
+			</h1>
+			<h4 className="mb-2 mt-2">
 				Search for your favourite character:{' '}
-				<input
-					type="text"
-					value={searchField}
-					onChange={(e) => setSearchField(e.target.value)}></input>
-				<button onClick={() => handleClickSearch()}>Search</button>
+				<div className={'input-group mb-3 mt-3'}>
+					<input
+						type="text"
+						value={searchField}
+						onChange={(e) => setSearchField(e.target.value)}
+						className={'form-control'}></input>
+					<button
+						className={'btn btn-outline-secondary'}
+						onClick={() => handleClickSearch()}>
+						Search
+					</button>
+				</div>
 			</h4>
-			<ul className="list-group">
+			<ul className="list-group ">
 				{props.data.results === undefined
 					? ''
 					: props.data.results.map((item, i) => (
-							<Link href={`/character-page?url=${item.url}`} key={i}>
-								<li className="list-group-item">{item.name}</li>
+							<Link
+								href={`/character-page?url=${item.url}`}
+								key={i}
+								className="text-decoration-none">
+								<li className="list-group-item mb-1 mt-1 border-warning rounded ">
+									{item.name}
+								</li>
 							</Link>
 					  ))}
 			</ul>

@@ -7,32 +7,41 @@ export default function Character(props) {
 	const router = useRouter();
 	console.log(props);
 	return (
-		<main>
-			<h2>Character Bio</h2>
+		<main className={styles.main}>
+			<h1>Character Bio</h1>
 
 			{props.data === undefined ? (
 				''
 			) : (
 				<ul className="list-group">
-					<li className="list-group-item">Name: {props.data.name}</li>
-					<li className="list-group-item">
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
+						Name: {props.data.name}
+					</li>
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
 						Year of birth: {props.data.birth_year}
 					</li>
-					<li className="list-group-item">Eye color: {props.data.eye_color}</li>
-					<li className="list-group-item">Gender: {props.data.gender}</li>
-					<li className="list-group-item">
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
+						Eye color: {props.data.eye_color}
+					</li>
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
+						Gender: {props.data.gender}
+					</li>
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
 						hair color: {props.data.hair_color}
 					</li>
-					<li className="list-group-item">Height: {props.data.height}</li>
-					<li className="list-group-item">Body mass: {props.data.mass}</li>
-					<li className="list-group-item">
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
+						Height: {props.data.height}
+					</li>
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
+						Body mass: {props.data.mass}
+					</li>
+					<li className="list-group-item mt-1 mb-1 border-warning rounded">
 						Skin color: {props.data.skin_color}
 					</li>
 				</ul>
 			)}
-
 			<Link href="/">
-				<Button label="Back to home"/>
+				<Button label="Go back" />
 			</Link>
 		</main>
 	);
