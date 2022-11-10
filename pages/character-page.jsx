@@ -27,7 +27,7 @@ export default function Character(props) {
 						Gender: {props.data.gender}
 					</li>
 					<li className="list-group-item mt-1 mb-1 border-warning rounded">
-						hair color: {props.data.hair_color}
+						Hair color: {props.data.hair_color}
 					</li>
 					<li className="list-group-item mt-1 mb-1 border-warning rounded">
 						Height: {props.data.height}
@@ -41,7 +41,7 @@ export default function Character(props) {
 				</ul>
 			)}
 			<Link href="/">
-				<Button label="Go back" />
+				<Button label="Go back" className="btn btn-danger"/>
 			</Link>
 		</main>
 	);

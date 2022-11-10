@@ -69,7 +69,7 @@ export default function Home(props) {
 								href={`/character-page?url=${item.url}`}
 								key={i}
 								className="text-decoration-none">
-								<li className="list-group-item mb-1 mt-1 border-warning rounded ">
+								<li className="list-group-item mb-1 mt-1 border-warning rounded d-flex justify-content-center">
 									{item.name}
 								</li>
 							</Link>
