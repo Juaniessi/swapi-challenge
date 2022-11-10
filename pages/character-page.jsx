@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
-import Button from '../components/Button';
+import Button from '../components/boton';
 
 export default function Character(props) {
 	console.log(props);
@@ -14,7 +14,9 @@ export default function Character(props) {
 				: props.data.results.map((item, i) => (
 						<ul key={i}>
 							<li className="list-group-item">Name:{item.name}</li>
-							<li className="list-group-item">Year of birth:{item.birth_year}</li>
+							<li className="list-group-item">
+								Year of birth:{item.birth_year}
+							</li>
 							<li className="list-group-item">Eye color:{item.eye_color}</li>
 							<li className="list-group-item">Gender:{item.gender}</li>
 							<li className="list-group-item">hair color:{item.hair_color}</li>
