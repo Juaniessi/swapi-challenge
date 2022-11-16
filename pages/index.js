@@ -59,7 +59,9 @@ export default function Home(props) {
 						value={searchField}
 						onChange={(e) => setSearchField(e.target.value)}
 						className={'form-control'}></input>
-					<button className={'btn btn-outline-secondary bg-dark'}>Search</button>
+					<button className={'btn btn-outline-secondary bg-dark'}>
+						Search
+					</button>
 				</form>
 			</h4>
 			{props.data.count === 0
@@ -84,11 +86,13 @@ export default function Home(props) {
 					handleClick={prevPage}
 					label="Previous"
 					disabled={!props.data.previous}
+					className="btn btn-outline-warning"
 				/>
 				<Button
 					handleClick={nextPage}
 					label="Next"
 					disabled={!props.data.next}
+					className="btn btn-outline-warning"
 				/>
 			</div>
 		</main>
