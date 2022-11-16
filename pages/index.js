@@ -97,13 +97,16 @@ export default function Home(props) {
 
 /**
  * this funtion will get you te characters on the search and also paginates it
- * @param {*} @url is constructed step by step with the search and the pagination 
+ * @param {*} @url is constructed step by step with the search and the pagination
  */
 
 export async function getServerSideProps(context) {
 	let url = 'https://swapi.py4e.com/api/people/';
 	if (context.query.search !== undefined) {
 		url += `?search=${context.query.search}`;
+	}
+	if (context.query.search === undefined) {
+		url += `?search= `;
 	}
 	if (context.query.page !== undefined) {
 		url += `&page=${context.query.page}`;
