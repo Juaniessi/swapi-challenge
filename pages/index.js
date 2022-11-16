@@ -17,7 +17,8 @@ export default function Home(props) {
 	 * pushes the windows so the getServerSideProps does the search
 	 */
 
-	const handleClickSearch = () => {
+	const handleClickSearch = (e) => {
+		e.preventDefault();
 		router.push(`/?search=${searchField}`);
 	};
 
@@ -48,18 +49,16 @@ export default function Home(props) {
 			</h1>
 			<h4 className="mb-2 mt-2">
 				Search for your favourite character:{' '}
-				<div className={'input-group mb-3 mt-3'}>
+				<form
+					className={'input-group mb-3 mt-3'}
+					onSubmit={(e) => handleClickSearch(e)}>
 					<input
 						type="text"
 						value={searchField}
 						onChange={(e) => setSearchField(e.target.value)}
 						className={'form-control'}></input>
-					<button
-						className={'btn btn-outline-secondary'}
-						onClick={() => handleClickSearch()}>
-						Search
-					</button>
-				</div>
+					<button className={'btn btn-outline-secondary'}>Search</button>
+				</form>
 			</h4>
 			<ul className="list-group ">
 				{props.data.results === undefined
