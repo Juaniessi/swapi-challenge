@@ -98,7 +98,7 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
 	try {
 		const res = await fetch(
-			`https://swapi.dev/api/people/?search=${context.query.search}&page=${
+			`https://swapi.py4e.com/api/people/?search=${context.query.search}&page=${
 				context.query.page === undefined ? '' : context.query.page
 			}`
 		);
