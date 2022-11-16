@@ -101,15 +101,13 @@ export default function Home(props) {
  */
 
 export async function getServerSideProps(context) {
-	let url = 'https://swapi.py4e.com/api/people/';
+	let url = 'https://swapi.py4e.com/api/people/?';
 	if (context.query.search !== undefined) {
-		url += `?search=${context.query.search}`;
+		url += `search=${context.query.search}&`;
 	}
-	if (context.query.search === undefined) {
-		url += `?search= `;
-	}
+
 	if (context.query.page !== undefined) {
-		url += `&page=${context.query.page}`;
+		url += `page=${context.query.page}`;
 	}
 
 	try {
