@@ -59,7 +59,7 @@ export default function Home(props) {
 						value={searchField}
 						onChange={(e) => setSearchField(e.target.value)}
 						className={'form-control'}></input>
-					<button className={'btn btn-outline-secondary'}>Search</button>
+					<button className={'btn btn-outline-secondary bg-dark'}>Search</button>
 				</form>
 			</h4>
 			{props.data.count === 0
