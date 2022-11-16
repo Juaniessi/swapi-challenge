@@ -40,7 +40,7 @@ export default function Character(props) {
 					</li>
 				</ul>
 			)}
-			<Link href="/">
+			<Link href="/" className='d-flex p-2 text-decoration-none'>
 				<Button label="Go back" className="btn btn-danger"/>
 			</Link>
 		</main>
