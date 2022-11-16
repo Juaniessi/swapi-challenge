@@ -5,6 +5,8 @@ import Button from '../components/Button';
 import Link from 'next/link';
 
 export default function Home(props) {
+	console.log(props);
+
 	const router = useRouter();
 
 	/**
@@ -60,6 +62,9 @@ export default function Home(props) {
 					<button className={'btn btn-outline-secondary'}>Search</button>
 				</form>
 			</h4>
+			{props.data.count === 0
+				? "Your search didn't return any results, try searchinf for something else."
+				: ''}
 			<ul className="list-group ">
 				{props.data.results === undefined
 					? ''
@@ -92,15 +97,20 @@ export default function Home(props) {
 
 /**
  * this funtion will get you te characters on the search and also paginates it
+ * @param {*} @url is constructed step by step with the search and the pagination 
  */
 
 export async function getServerSideProps(context) {
+	let url = 'https://swapi.py4e.com/api/people/';
+	if (context.query.search !== undefined) {
+		url += `?search=${context.query.search}`;
+	}
+	if (context.query.page !== undefined) {
+		url += `&page=${context.query.page}`;
+	}
+
 	try {
-		const res = await fetch(
-			`https://swapi.py4e.com/api/people/?search=${context.query.search}&page=${
-				context.query.page === undefined ? '' : context.query.page
-			}`
-		);
+		const res = await fetch(url);
 
 		const data = await res.json();
 
